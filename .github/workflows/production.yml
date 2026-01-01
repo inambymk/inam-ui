@@ -22,6 +22,7 @@ jobs:
   detect-changes:
     name: Detect Changes
     runs-on: ubuntu-latest
+    environment: production
     outputs:
       cli: ${{ steps.filter.outputs.cli }}
       docs: ${{ steps.filter.outputs.docs }}
@@ -47,6 +48,7 @@ jobs:
   publish-npm:
     name: Publish to npm
     runs-on: ubuntu-latest
+    environment: production
     needs: detect-changes
     if: needs.detect-changes.outputs.cli == 'true'
     
