@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://inam-ui.dev
+    about: Check out the documentation for guides and API reference
+  - name: Discussions
+    url: https://github.com/inambymk/inam-ui/discussions
+    about: Ask questions and discuss ideas

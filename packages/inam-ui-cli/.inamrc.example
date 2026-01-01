@@ -1,0 +1,7 @@
+{
+  "defaultPath": "src/components/ui",
+  "addFileHeader": true,
+  "checkDependencies": true,
+  "confirmBeforeOverwrite": true,
+  "tailwindVersion": 4
+}
