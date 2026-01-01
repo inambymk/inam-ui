@@ -1,0 +1,19 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "git": {
+    "deploymentEnabled": {
+      "production": true,
+      "preview": false
+    }
+  },
+  "github": {
+    "enabled": true,
+    "autoAlias": true,
+    "silent": false,
+    "autoJobCancelation": true
+  },
+  "buildCommand": "npm run build:docs",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "outputDirectory": "apps/docs/.next"
+}
