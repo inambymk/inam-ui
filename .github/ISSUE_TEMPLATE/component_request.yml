@@ -1,0 +1,99 @@
+name: component_request
+description: Request a new component to be added
+title: "[Component]: "
+labels: ["component-request", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new component! Please provide details below.
+
+  - type: input
+    id: name
+    attributes:
+      label: Component Name
+      description: What should this component be called?
+      placeholder: DatePicker, Accordion, Tabs, etc.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Which category does this component belong to?
+      options:
+        - Form (inputs, buttons, selects)
+        - Layout (containers, grids, cards)
+        - Overlay (modals, popovers, tooltips)
+        - Feedback (alerts, toasts, notifications)
+        - Progress (loaders, progress bars)
+        - Navigation (tabs, menus, breadcrumbs)
+        - Data Display (tables, lists, avatars)
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Component Description
+      description: Describe what this component does
+      placeholder: A date picker that allows users to select dates from a calendar...
+    validations:
+      required: true
+
+  - type: textarea
+    id: use_cases
+    attributes:
+      label: Use Cases
+      description: What are the main use cases for this component?
+      placeholder: |
+        - Booking forms
+        - Event scheduling
+        - Date range selection
+    validations:
+      required: true
+
+  - type: textarea
+    id: props
+    attributes:
+      label: Suggested Props/API
+      description: What props and features should this component have?
+      placeholder: |
+        - value: Date - The selected date
+        - onChange: (date: Date) => void
+        - minDate: Date - Minimum selectable date
+        - disabled: boolean
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples/References
+      description: Links to similar components or design references
+      placeholder: |
+        - https://example.com/datepicker
+        - Inspired by shadcn/ui calendar
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this component to you?
+      options:
+        - Nice to have
+        - Would be helpful
+        - Really need this
+        - Critical for my project
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Contribution
+      options:
+        - label: I am willing to help implement this component
+          required: false
+        - label: I can provide design mockups or specifications
+          required: false
