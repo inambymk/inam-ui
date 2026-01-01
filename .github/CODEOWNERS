@@ -2,8 +2,8 @@
 # These files require review from the owner to be changed
 
 # Workflows
-/.github/workflows/  @manimkk
+# /.github/workflows/  @manimkk
 
 # Configuration
-/vercel.json         @manimkk
-/package.json        @manimkk
+# /vercel.json         @manimkk
+# /package.json        @manimkk
