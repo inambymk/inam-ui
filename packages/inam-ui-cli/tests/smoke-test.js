@@ -107,8 +107,8 @@ test("generated Button has valid content", () => {
   if (!content.includes("interface ButtonProps")) {
     throw new Error("Missing ButtonProps interface");
   }
-  if (!content.includes("export default Button")) {
-    throw new Error("Missing default export");
+  if (!content.includes("export const Button")) {
+    throw new Error("Missing named export 'Button'");
   }
 });
 
