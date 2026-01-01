@@ -33,17 +33,15 @@ jobs:
 
       - name: Build CLI (explicit)
         run: |
-          cd packages/inam-ui-cli
-          npm ci
-          npm run build
+          npm run build:cli
           # Ensure dist created and show contents for debugging
-          if [ ! -f dist/index.js ]; then
+          if [ ! -f packages/inam-ui-cli/dist/index.js ]; then
             echo "❌ packages/inam-ui-cli/dist/index.js not found"
-            ls -la
+            ls -la packages/inam-ui-cli
             exit 1
           fi
           echo "✅ CLI build output:"
-          ls -la dist
+          ls -la packages/inam-ui-cli/dist
 
       - name: Test CLI - List command
         run: |
