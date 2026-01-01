@@ -1,0 +1,12 @@
+# Protect Critical Workflow and Config Files
+# These files require review from the owner to be changed
+
+# Workflows
+/.github/workflows/  @inambymk
+
+# Configuration
+/vercel.json         @inambymk
+/package.json        @inambymk
+
+# Documentation regarding setup
+/PRODUCTION_SETUP.md @inambymk

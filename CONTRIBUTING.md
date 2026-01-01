@@ -173,6 +173,8 @@ npm run build:docs
 
 ## Pull Request Process
 
+> **Note:** Open PRs against `main` for staging. When the changes are production‑ready, open a PR from `main` to `production` to trigger the release workflow.
+
 1. **Create a descriptive PR title**
    - ✅ `feat: add DatePicker component`
    - ✅ `fix: resolve Button loading state issue`

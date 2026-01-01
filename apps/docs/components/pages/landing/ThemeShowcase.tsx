@@ -42,6 +42,15 @@ const ThemeShowcase = () => {
             Switch themes instantly and preview how all components adapt to your chosen color
             scheme. Perfect for maintaining brand consistency across your entire application.
           </p>
+          <div className="mt-6 flex justify-center">
+            <a
+              href="/themes"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 text-primary font-medium hover:bg-primary/20 transition-colors"
+            >
+              <Palette className="h-4 w-4" />
+              Learn how to configure themes
+            </a>
+          </div>
         </div>
 
         {/* Theme Grid */}

@@ -96,6 +96,14 @@ export default function ComponentPage({
             {metadata.category}
           </span>
         </div>
+
+        {/* Theme customization link */}
+        <div className="flex items-center gap-1.5 text-xs text-muted-foreground/60 hover:text-primary/80 transition-colors w-fit">
+          <Link href="/themes" className="flex items-center gap-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-current" />
+            Want to customize this color? Check our Theming Guide
+          </Link>
+        </div>
       </header>
 
       {/* Preview Section */}
