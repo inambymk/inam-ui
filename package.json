@@ -19,7 +19,7 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf node_modules packages/*/node_modules apps/*/node_modules packages/*/dist",
-    "prepare": "husky"
+    "prepare": "husky || true"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
