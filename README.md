@@ -10,7 +10,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-[Documentation](https://inam-ui.vercel.app) · [Components](https://inam-ui.vercel.app/components) · [Report Bug](https://github.com/inambymk/inam-ui/issues/new?template=bug_report.yml) · [Request Component](https://github.com/inambymk/inam-ui/issues/new?template=component_request.yml)
+[Documentation](https://inam-ui.vercel.app) · [Components](https://inam-ui.vercel.app/components) · [Report Bug](https://github.com/manimkk/inam-ui/issues/new?template=bug_report.yml) · [Request Component](https://github.com/manimkk/inam-ui/issues/new?template=component_request.yml)
 
 </div>
 
@@ -145,7 +145,7 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 
 ```bash
 # Clone the repository
-git clone https://github.com/inambymk/inam-ui.git
+git clone https://github.com/manimkk/inam-ui.git
 cd inam-ui
 
 # Install dependencies
@@ -221,21 +221,21 @@ PRs are automatically validated by GitHub Actions.
 
 ## 🐛 Found a Bug?
 
-[Report it here](https://github.com/inambymk/inam-ui/issues/new?template=bug_report.yml)
+[Report it here](https://github.com/manimkk/inam-ui/issues/new?template=bug_report.yml)
 
 ## 💡 Have a Feature Idea?
 
-[Request it here](https://github.com/inambymk/inam-ui/issues/new?template=feature_request.yml)
+[Request it here](https://github.com/manimkk/inam-ui/issues/new?template=feature_request.yml)
 
 ## 🎨 Want a New Component?
 
-[Request it here](https://github.com/inambymk/inam-ui/issues/new?template=component_request.yml)
+[Request it here](https://github.com/manimkk/inam-ui/issues/new?template=component_request.yml)
 
 ---
 
 ## 📄 License
 
-MIT © [Inam](https://github.com/inambymk)
+MIT © [Inam](https://github.com/manimkk)
 
 ---
 

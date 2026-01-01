@@ -3,7 +3,7 @@ export const WELCOME_MESSAGE = `
   ---------------------------------
   Inam UI is a tool for quickly generating reusable UI components in your project.
   More components and features are coming soon!
-  https://github.com/inambymk/inam-ui
+  https://github.com/manimkk/inam-ui
 
   Happy coding!
   `;

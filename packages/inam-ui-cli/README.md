@@ -60,4 +60,4 @@ You can customize the CLI by creating an `.inamrc` file in your project root:
 
 ## 📄 License
 
-MIT © [Inam](https://github.com/inambymk)
+MIT © [Inam](https://github.com/manimkk)

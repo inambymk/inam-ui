@@ -73,7 +73,7 @@ export const defaultMetadata: Metadata = {
     description:
       "A zero-dependency CLI for generating production-ready React components with TypeScript and Tailwind CSS.",
     images: [`${SITE_URL}/twitter-image.png`],
-    creator: "@inambymk",
+    creator: "@manimkk",
   },
   robots: {
     index: true,
@@ -155,7 +155,7 @@ export function generateComponentJsonLd(slug: string): object | null {
     programmingLanguage: ["TypeScript", "React"],
     runtimePlatform: "React",
     url: `${SITE_URL}/components/${slug}`,
-    codeRepository: "https://github.com/inambymk/inam-ui",
+    codeRepository: "https://github.com/manimkk/inam-ui",
     license: "https://opensource.org/licenses/MIT",
     creator: {
       "@type": "Organization",

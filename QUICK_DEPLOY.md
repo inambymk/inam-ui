@@ -24,7 +24,7 @@ git push origin main
 Add in Vercel dashboard under "Environment Variables":
 
 ```
-NEXT_PUBLIC_GIT_LINK=https://github.com/inambymk/inam-ui
+NEXT_PUBLIC_GIT_LINK=https://github.com/manimkk/inam-ui
 ```
 
 That's it! Click "Deploy" 🎉

@@ -91,7 +91,7 @@ The first production release of Inam UI - a powerful CLI for generating premium 
 - **Package Name**: `inam-ui`
 - **License**: MIT
 - **Node Version**: >=18.0.0
-- **Repository**: https://github.com/inambymk/inam-ui
+- **Repository**: https://github.com/manimkk/inam-ui
 
 ### 🎯 Component Categories
 
@@ -102,4 +102,4 @@ The first production release of Inam UI - a powerful CLI for generating premium 
 
 ---
 
-[0.1.0]: https://github.com/inambymk/inam-ui/releases/tag/v0.1.0
+[0.1.0]: https://github.com/manimkk/inam-ui/releases/tag/v0.1.0

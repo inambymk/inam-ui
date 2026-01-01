@@ -60,7 +60,7 @@ The documentation app is located in `apps/docs`. We recommend using **Vercel** f
     - This overrides the auto-generated URL
 
     **Always Set:**
-    - `NEXT_PUBLIC_GIT_LINK`: `https://github.com/inambymk/inam-ui`
+    - `NEXT_PUBLIC_GIT_LINK`: `https://github.com/manimkk/inam-ui`
 
 ### Manual Build Check
 

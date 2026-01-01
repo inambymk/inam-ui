@@ -10,10 +10,10 @@ export default function Footer() {
   const footerLinks = {
     resources: [
       { name: "Components", href: "/components" },
-      { name: "GitHub Repository", href: "https://github.com/inambymk/inam-ui", external: true },
+      { name: "GitHub Repository", href: "https://github.com/manimkk/inam-ui", external: true },
     ],
     community: [
-      { name: "GitHub", href: "https://github.com/inambymk/inam-ui", external: true },
+      { name: "GitHub", href: "https://github.com/manimkk/inam-ui", external: true },
       { name: "Discord", href: "#", external: true },
       { name: "Twitter", href: "#", external: true },
     ],
@@ -112,7 +112,7 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com/inambymk/inam-ui"
+              href="https://github.com/manimkk/inam-ui"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"

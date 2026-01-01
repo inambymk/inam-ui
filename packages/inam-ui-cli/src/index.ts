@@ -181,7 +181,7 @@ function showHelp() {
 
   console.log(chalk.bold("Configuration:"));
   console.log("  Create a .inamrc file in your project root to customize defaults.");
-  console.log("  See: https://github.com/inambymk/inam-ui#configuration\n");
+  console.log("  See: https://github.com/manimkk/inam-ui#configuration\n");
 }
 
 /**

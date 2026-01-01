@@ -40,11 +40,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/inambymk/inam-ui"
+    "url": "https://github.com/manimkk/inam-ui"
   },
-  "homepage": "https://github.com/inambymk/inam-ui#readme",
+  "homepage": "https://github.com/manimkk/inam-ui#readme",
   "bugs": {
-    "url": "https://github.com/inambymk/inam-ui/issues"
+    "url": "https://github.com/manimkk/inam-ui/issues"
   },
   "dependencies": {
     "chalk": "^5.3.0",

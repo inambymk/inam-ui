@@ -28,7 +28,7 @@ By participating in this project, you agree to maintain a welcoming and inclusiv
 1. Fork the repository
 2. Clone your fork:
    ```bash
-   git clone https://github.com/inambymk/inam-ui.git
+   git clone https://github.com/manimkk/inam-ui.git
    cd inam-ui
    ```
 3. Install dependencies:
