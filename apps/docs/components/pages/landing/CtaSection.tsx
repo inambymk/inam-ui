@@ -35,7 +35,7 @@ const CtaSection = () => {
             </Link>
 
             <a
-              href="https://github.com/manimkk/inam-ui"
+              href="https://github.com/inambymk/inam-ui"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 h-12 px-6 rounded-lg border border-border bg-card font-medium text-foreground hover:bg-muted/50 transition-colors"

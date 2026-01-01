@@ -155,7 +155,7 @@ export function generateComponentJsonLd(slug: string): object | null {
     programmingLanguage: ["TypeScript", "React"],
     runtimePlatform: "React",
     url: `${SITE_URL}/components/${slug}`,
-    codeRepository: "https://github.com/manimkk/inam-ui",
+    codeRepository: "https://github.com/inambymk/inam-ui",
     license: "https://opensource.org/licenses/MIT",
     creator: {
       "@type": "Organization",
