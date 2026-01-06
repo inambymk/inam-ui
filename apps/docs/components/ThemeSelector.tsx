@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { Palette } from "lucide-react";
 import { useColorTheme } from "./ThemeProvider";
+import { useAnalytics, TELEMETRY_EVENTS } from "@/lib/useAnalytics";
 
 const themes = [
   { id: "indigo", name: "Indigo", color: "hsl(239 84% 67%)" },
@@ -22,6 +23,7 @@ export default function ThemeSelector() {
   const [mounted, setMounted] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { colorTheme, setColorTheme } = useColorTheme();
+  const { trackEvent } = useAnalytics();
 
   useLayoutEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- Valid pattern: setting mounted flag for hydration safety
@@ -40,8 +42,14 @@ export default function ThemeSelector() {
   }, []);
 
   const selectTheme = (themeId: ColorThemeId) => {
+    const previousTheme = colorTheme;
     setColorTheme(themeId);
     setIsOpen(false);
+
+    trackEvent(TELEMETRY_EVENTS.DOCS_COLOR_THEME_CHANGED, {
+      from_theme: previousTheme,
+      to_theme: themeId,
+    });
   };
 
   if (!mounted) {
