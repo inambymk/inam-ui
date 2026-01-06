@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { defaultMetadata } from "@/lib/seo";
+import { PostHogProvider, PostHogPageView } from "@/components/PostHogProvider";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -43,15 +45,20 @@ export default function RootLayout({
       <body
         className={`${inter.variable} font-sans antialiased bg-background text-foreground selection:bg-primary/20 selection:text-primary`}
       >
-        <ThemeProvider>
-          <div className="relative min-h-screen flex flex-col">
-            <Navbar />
-            <main id="main-content" className="flex-1" role="main">
-              {children}
-            </main>
-            <Footer />
-          </div>
-        </ThemeProvider>
+        <PostHogProvider>
+          <Suspense fallback={null}>
+            <PostHogPageView />
+          </Suspense>
+          <ThemeProvider>
+            <div className="relative min-h-screen flex flex-col">
+              <Navbar />
+              <main id="main-content" className="flex-1" role="main">
+                {children}
+              </main>
+              <Footer />
+            </div>
+          </ThemeProvider>
+        </PostHogProvider>
       </body>
     </html>
   );

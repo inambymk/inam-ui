@@ -1,0 +1,16 @@
+export const TELEMETRY_EVENTS = {
+  CLI_COMMAND_LIST: "cli_command_list",
+  CLI_COMMAND_ADD: "cli_command_add",
+  CLI_COMMAND_HELP: "cli_command_help",
+  CLI_COMMAND_VERSION: "cli_command_version",
+  DOCS_SEARCH_PERFORMED: "search_query_performed",
+  DOCS_SEARCH_RESULT_CLICKED: "search_result_clicked",
+  DOCS_THEME_MODE_CHANGED: "theme_mode_changed",
+  DOCS_CODE_COPIED: "code_copied",
+  DOCS_THEME_PRESET_SELECTED: "theme_preset_selected",
+  DOCS_THEME_TAB_CHANGED: "theme_tab_changed",
+  DOCS_COLOR_THEME_CHANGED: "color_theme_changed",
+  DOCS_INSTALL_COMMAND_COPIED: "install_command_copied",
+  DOCS_VARIANT_SELECTED: "variant_selected",
+  DOCS_CTA_CLICKED: "cta_clicked",
+} as const;

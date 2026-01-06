@@ -2,22 +2,37 @@
 
 import { useState, useCallback } from "react";
 import { Check, Copy, ClipboardCopy } from "lucide-react";
+import { useAnalytics, TELEMETRY_EVENTS } from "@/lib/useAnalytics";
 
 interface CopyButtonProps {
   text: string;
   variant?: "default" | "icon" | "minimal";
   className?: string;
+  contentType?: string; // For analytics: "component_code", "install_command", "theme_config"
 }
 
-export default function CopyButton({ text, variant = "default", className = "" }: CopyButtonProps) {
+export default function CopyButton({
+  text,
+  variant = "default",
+  className = "",
+  contentType = "code",
+}: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const { trackEvent } = useAnalytics();
 
   const handleCopy = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
       setIsAnimating(true);
+
+      // Track the copy event
+      trackEvent(TELEMETRY_EVENTS.DOCS_CODE_COPIED, {
+        content_type: contentType,
+        content_length: text.length,
+        content_preview: text.length > 50 ? text.substring(0, 50) + "..." : text,
+      });
 
       setTimeout(() => {
         setCopied(false);
@@ -26,7 +41,7 @@ export default function CopyButton({ text, variant = "default", className = "" }
     } catch (err) {
       console.error("Failed to copy!", err);
     }
-  }, [text]);
+  }, [text, contentType, trackEvent]);
 
   const baseClasses =
     "relative inline-flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background";

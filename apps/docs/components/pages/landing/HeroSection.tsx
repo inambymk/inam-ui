@@ -4,14 +4,21 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Check, Copy, Terminal } from "lucide-react";
 import { componentsMetadata } from "@/lib/components-data";
+import { useAnalytics, TELEMETRY_EVENTS } from "@/lib/useAnalytics";
 
 const HeroSection = () => {
   const [copied, setCopied] = useState(false);
   const command = "npx inam-ui add button";
+  const { trackEvent } = useAnalytics();
 
   const copyCommand = () => {
     navigator.clipboard.writeText(command);
     setCopied(true);
+
+    trackEvent(TELEMETRY_EVENTS.DOCS_INSTALL_COMMAND_COPIED, {
+      command: command,
+    });
+
     setTimeout(() => setCopied(false), 2000);
   };
 
@@ -42,6 +49,12 @@ const HeroSection = () => {
             <div className="flex flex-wrap items-center gap-4 mb-12">
               <Link
                 href="/components"
+                onClick={() =>
+                  trackEvent(TELEMETRY_EVENTS.DOCS_CTA_CLICKED, {
+                    location: "hero",
+                    destination: "/components",
+                  })
+                }
                 className="inline-flex items-center justify-center h-12 px-8 rounded-md bg-foreground text-background font-medium hover:bg-foreground/90 transition-colors"
               >
                 Browse Components

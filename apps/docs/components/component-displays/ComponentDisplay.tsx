@@ -6,6 +6,7 @@ import { ComponentDisplayProps } from "./types";
 import { getComponent, getComponentCode, getDefaultProps, needsSpecialHandling } from "./utils";
 import { TextareaDisplay, CardDisplay, CheckboxDisplay } from "./displays";
 import { CodeDisplay, PreviewContainer } from "./shared";
+import { useAnalytics, TELEMETRY_EVENTS } from "@/lib/useAnalytics";
 
 // Registry for custom component displays
 const customDisplays: Record<string, React.ComponentType> = {
@@ -18,6 +19,7 @@ export default function ComponentDisplay({ slug, onVariantChange }: ComponentDis
   const Component = useMemo(() => getComponent(slug), [slug]) as React.FC<Record<string, unknown>>;
   const apiData = getComponentApi(slug);
   const [selectedVariant, setSelectedVariant] = useState<string | null>(null);
+  const { trackEvent } = useAnalytics();
 
   const variantProp = apiData?.props.find((p) => p.name === "variant");
   const sizeProp = apiData?.props.find((p) => p.name === "size" || p.name === "width");
@@ -111,6 +113,14 @@ export default function ComponentDisplay({ slug, onVariantChange }: ComponentDis
                       const newVariant = isSelected ? null : `variant-${v}`;
                       setSelectedVariant(newVariant);
                       onVariantChange?.(newVariant);
+
+                      if (newVariant) {
+                        trackEvent(TELEMETRY_EVENTS.DOCS_VARIANT_SELECTED, {
+                          slug,
+                          variant: v,
+                          type: "variant",
+                        });
+                      }
                     }}
                     className={`flex flex-col rounded-xl border transition-all ${
                       isSelected
@@ -148,6 +158,14 @@ export default function ComponentDisplay({ slug, onVariantChange }: ComponentDis
                       const newVariant = isSelected ? null : `size-${s}`;
                       setSelectedVariant(newVariant);
                       onVariantChange?.(newVariant);
+
+                      if (newVariant) {
+                        trackEvent(TELEMETRY_EVENTS.DOCS_VARIANT_SELECTED, {
+                          slug,
+                          size: s,
+                          type: "size",
+                        });
+                      }
                     }}
                     className={`flex flex-col items-center rounded-xl border transition-all ${
                       isSelected
