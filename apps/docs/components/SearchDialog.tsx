@@ -5,6 +5,7 @@ import { Search, ArrowRight, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { componentsMetadata } from "@/lib/components-data";
+import { useAnalytics, TELEMETRY_EVENTS } from "@/lib/useAnalytics";
 
 interface SearchDialogProps {
   isOpen: boolean;
@@ -16,6 +17,7 @@ function SearchContent({ onClose }: { onClose: () => void }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+  const { trackEvent } = useAnalytics();
 
   // Filter and sort components based on search query
   const filteredComponents = componentsMetadata
@@ -32,6 +34,19 @@ function SearchContent({ onClose }: { onClose: () => void }) {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- Valid pattern: resetting selection when search results change
     setSelectedIndex(0);
   }, [query]);
+
+  useEffect(() => {
+    if (!query.trim()) return;
+
+    const timer = setTimeout(() => {
+      trackEvent(TELEMETRY_EVENTS.DOCS_SEARCH_PERFORMED, {
+        query: query,
+        results_count: filteredComponents.length,
+      });
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [query, filteredComponents.length, trackEvent]);
 
   // Focus input on mount
   useEffect(() => {
@@ -53,7 +68,16 @@ function SearchContent({ onClose }: { onClose: () => void }) {
         case "Enter":
           e.preventDefault();
           if (filteredComponents[selectedIndex]) {
-            router.push(`/components/${filteredComponents[selectedIndex].slug}`);
+            const selectedComp = filteredComponents[selectedIndex];
+
+            trackEvent(TELEMETRY_EVENTS.DOCS_SEARCH_RESULT_CLICKED, {
+              result_type: "component",
+              result_name: selectedComp.name,
+              result_slug: selectedComp.slug,
+              via: "keyboard",
+            });
+
+            router.push(`/components/${selectedComp.slug}`);
             onClose();
           }
           break;
@@ -63,7 +87,7 @@ function SearchContent({ onClose }: { onClose: () => void }) {
           break;
       }
     },
-    [filteredComponents, selectedIndex, router, onClose]
+    [filteredComponents, selectedIndex, router, onClose, trackEvent]
   );
 
   return (
@@ -105,7 +129,15 @@ function SearchContent({ onClose }: { onClose: () => void }) {
               <Link
                 key={comp.slug}
                 href={`/components/${comp.slug}`}
-                onClick={onClose}
+                onClick={() => {
+                  trackEvent(TELEMETRY_EVENTS.DOCS_SEARCH_RESULT_CLICKED, {
+                    result_type: "component",
+                    result_name: comp.name,
+                    result_slug: comp.slug,
+                    via: "click",
+                  });
+                  onClose();
+                }}
                 className={`flex items-center gap-3 px-3 py-3 rounded-xl transition-colors ${
                   index === selectedIndex ? "bg-primary/10 text-primary" : "hover:bg-muted/50"
                 }`}

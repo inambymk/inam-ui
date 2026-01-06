@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { Github, Zap } from "lucide-react";
+import { useAnalytics, TELEMETRY_EVENTS } from "@/lib/useAnalytics";
 
 const CtaSection = () => {
+  const { trackEvent } = useAnalytics();
+
   return (
     <section className="relative py-20 lg:py-28 overflow-hidden">
       {/* Background gradient */}
@@ -29,6 +34,12 @@ const CtaSection = () => {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/components"
+              onClick={() =>
+                trackEvent(TELEMETRY_EVENTS.DOCS_CTA_CLICKED, {
+                  location: "cta_section",
+                  destination: "/components",
+                })
+              }
               className="inline-flex items-center justify-center h-12 px-8 rounded-lg bg-primary text-primary-foreground font-semibold transition-all hover:opacity-90 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 active:translate-y-0"
             >
               Get Started
@@ -38,6 +49,12 @@ const CtaSection = () => {
               href="https://github.com/inambymk/inam-ui"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() =>
+                trackEvent(TELEMETRY_EVENTS.DOCS_CTA_CLICKED, {
+                  location: "cta_section",
+                  destination: "github",
+                })
+              }
               className="inline-flex items-center gap-2 h-12 px-6 rounded-lg border border-border bg-card font-medium text-foreground hover:bg-muted/50 transition-colors"
             >
               <Github className="h-5 w-5" />

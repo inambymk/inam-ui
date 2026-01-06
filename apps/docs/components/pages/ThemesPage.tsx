@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useAnalytics, TELEMETRY_EVENTS } from "@/lib/useAnalytics";
 
 // --- Theme Data Extraction ---
 
@@ -211,6 +212,7 @@ type ThemeKey = keyof typeof themesConfig;
 
 export default function ThemesPage() {
   const { colorTheme, setColorTheme } = useColorTheme();
+  const { trackEvent } = useAnalytics();
 
   // Local state for the configuration viewer
   const [selectedConfigTheme, setSelectedConfigTheme] = useState<ThemeKey>(
@@ -222,6 +224,11 @@ export default function ThemesPage() {
   const handleThemeSelect = (themeId: ThemeKey) => {
     setColorTheme(themeId);
     setSelectedConfigTheme(themeId);
+
+    trackEvent(TELEMETRY_EVENTS.DOCS_THEME_PRESET_SELECTED, {
+      theme_id: themeId,
+      theme_name: themesConfig[themeId].name,
+    });
   };
 
   const themeData = themesConfig[selectedConfigTheme];
@@ -544,18 +551,24 @@ export default config;
           {/* Tabs */}
           <div className="flex p-1 gap-1 bg-muted/50 rounded-lg w-full sm:w-fit border border-border/50">
             <button
-              onClick={() => setActiveTab("v4")}
+              onClick={() => {
+                setActiveTab("v4");
+                trackEvent(TELEMETRY_EVENTS.DOCS_THEME_TAB_CHANGED, { tab: "v4" });
+              }}
               className={cn(
                 "flex-1 sm:flex-none px-4 py-2 rounded-md text-sm font-medium transition-all duration-200",
                 activeTab === "v4"
                   ? "bg-background text-foreground shadow-sm ring-1 ring-border"
-                  : "text-muted-foreground hover:text-foreground hover:bg-background/50"
+                  : "text-muted-foreground hover:text-foreground hover:bg-background/50 "
               )}
             >
               Tailwind CSS v4.0
             </button>
             <button
-              onClick={() => setActiveTab("v3")}
+              onClick={() => {
+                setActiveTab("v3");
+                trackEvent(TELEMETRY_EVENTS.DOCS_THEME_TAB_CHANGED, { tab: "v3" });
+              }}
               className={cn(
                 "flex-1 sm:flex-none px-4 py-2 rounded-md text-sm font-medium transition-all duration-200",
                 activeTab === "v3"
@@ -582,7 +595,10 @@ export default config;
 
             <div className="relative group rounded-xl border border-border bg-[#0d1117] overflow-hidden shadow-sm">
               <div className="absolute right-3 top-3 z-10">
-                <CopyButton text={activeTab === "v4" ? renderV4Code() : renderV3Code()} />
+                <CopyButton
+                  text={activeTab === "v4" ? renderV4Code() : renderV3Code()}
+                  contentType="theme_config"
+                />
               </div>
               <pre className="p-4 sm:p-6 overflow-x-auto text-sm text-gray-300 font-mono leading-relaxed custom-scrollbar">
                 <code>{activeTab === "v4" ? renderV4Code() : renderV3Code()}</code>

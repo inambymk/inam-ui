@@ -8,6 +8,8 @@ import { componentNames } from "./componentRegistry";
 import { loadConfig } from "./config";
 import { checkDependencies } from "./dependencyChecker";
 import { listComponents } from "./listCommand";
+import { trackEvent, shutdownTelemetry } from "./telemetry";
+import { TELEMETRY_EVENTS } from "./telemetry-constants";
 
 // Handle unhandled promise rejections
 process.on("unhandledRejection", (error) => {
@@ -54,7 +56,9 @@ async function run() {
         }
       }
 
+      await trackEvent(TELEMETRY_EVENTS.CLI_COMMAND_LIST, { category, search });
       listComponents({ category, search });
+      await shutdownTelemetry();
       return;
     }
 
@@ -69,10 +73,14 @@ async function run() {
       const arg = args[i];
 
       if (arg === "--help" || arg === "-h") {
+        await trackEvent(TELEMETRY_EVENTS.CLI_COMMAND_HELP);
         showHelp();
+        await shutdownTelemetry();
         return;
       } else if (arg === "--version" || arg === "-v") {
+        await trackEvent(TELEMETRY_EVENTS.CLI_COMMAND_VERSION);
         showVersion();
+        await shutdownTelemetry();
         return;
       } else if (arg === "--force" || arg === "-f") {
         force = true;
@@ -80,6 +88,8 @@ async function run() {
         targetPath = args[++i] || targetPath;
       } else if (arg === "--skip-checks") {
         skipDependencyCheck = true;
+      } else if (arg === "--no-telemetry") {
+        process.env.INAM_UI_TELEMETRY_DISABLED = "1";
       } else if (arg === "add") {
         // Skip 'add' command, next arg is component name
         continue;
@@ -139,11 +149,20 @@ async function run() {
     });
 
     if (!result) {
+      await shutdownTelemetry();
       process.exit(1);
     }
+
+    await trackEvent(TELEMETRY_EVENTS.CLI_COMMAND_ADD, {
+      component: safeComponentName,
+      force,
+    });
+
+    await shutdownTelemetry();
   } catch (error) {
     console.error(chalk.red("An error occurred:"));
     console.error(error);
+    await shutdownTelemetry();
     process.exit(1);
   }
 }
@@ -167,7 +186,8 @@ function showHelp() {
   console.log("  -v, --version       Show version");
   console.log("  -p, --path <path>   Specify target directory (default: src/components/ui)");
   console.log("  -f, --force         Overwrite existing files without prompting");
-  console.log("  --skip-checks       Skip dependency checks\n");
+  console.log("  --skip-checks       Skip dependency checks");
+  console.log("  --no-telemetry      Disable anonymous usage analytics\n");
 
   console.log(chalk.bold("List Options:"));
   console.log("  -c, --category <name>   Filter by category (Form, Layout, Overlay, etc.)");
@@ -182,6 +202,12 @@ function showHelp() {
   console.log(chalk.bold("Configuration:"));
   console.log("  Create a .inamrc file in your project root to customize defaults.");
   console.log("  See: https://github.com/inambymk/inam-ui#configuration\n");
+
+  console.log(chalk.bold("Telemetry:"));
+  console.log("  Inam UI collects anonymous usage data to improve the CLI.");
+  console.log("  Data collected: CLI version, Node version, OS, commands used");
+  console.log("  No personal information or code is collected.");
+  console.log("  Opt out: Set INAM_UI_TELEMETRY_DISABLED=1 or use --no-telemetry\n");
 }
 
 /**
