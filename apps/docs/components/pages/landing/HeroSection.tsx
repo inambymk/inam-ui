@@ -31,7 +31,7 @@ const HeroSection = () => {
             {/* Minimal Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-muted text-xs font-medium text-foreground mb-8">
               <span className="flex h-2 w-2 rounded-full bg-primary" />
-              v0.1.0 Now Available
+              v0.1.1 Now Available
             </div>
 
             {/* Headline */}
