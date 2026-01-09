@@ -29,7 +29,6 @@ function SearchContent({ onClose }: { onClose: () => void }) {
     )
     .sort((a, b) => a.name.localeCompare(b.name));
 
-  // Reset selection when query changes
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- Valid pattern: resetting selection when search results change
     setSelectedIndex(0);
@@ -48,12 +47,10 @@ function SearchContent({ onClose }: { onClose: () => void }) {
     return () => clearTimeout(timer);
   }, [query, filteredComponents.length, trackEvent]);
 
-  // Focus input on mount
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
 
-  // Handle keyboard navigation
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       switch (e.key) {

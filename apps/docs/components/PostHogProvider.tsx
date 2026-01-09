@@ -8,8 +8,9 @@ import { usePathname, useSearchParams } from "next/navigation";
 if (typeof window !== "undefined") {
   const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
   const host = process.env.NEXT_PUBLIC_POSTHOG_HOST;
+  const isProduction = process.env.NODE_ENV === "production";
 
-  if (key && host) {
+  if (key && host && isProduction) {
     posthog.init(key, {
       api_host: host,
       person_profiles: "identified_only",

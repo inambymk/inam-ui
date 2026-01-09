@@ -1,3 +1,7 @@
+// Auto-synced from CLI templates - DO NOT EDIT DIRECTLY
+// Edit: packages/inam-ui-cli/src/templates/Card.tsx
+// Then run: npm run sync:templates
+
 import React from "react";
 
 interface CardProps {

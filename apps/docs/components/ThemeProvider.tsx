@@ -5,7 +5,15 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { useEffect, useState } from "react";
 
 // Color theme context for accent colors
-type ColorTheme = "indigo" | "green" | "orange" | "rose" | "teal" | "amber" | "purple" | "crimson";
+export type ColorTheme =
+  | "indigo"
+  | "green"
+  | "orange"
+  | "rose"
+  | "teal"
+  | "amber"
+  | "purple"
+  | "crimson";
 
 interface ColorThemeContextType {
   colorTheme: ColorTheme;

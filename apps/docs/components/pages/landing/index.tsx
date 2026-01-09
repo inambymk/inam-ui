@@ -5,6 +5,8 @@ const HeroSection = dynamic(() => import("@/components/pages/landing/HeroSection
 
 const FeaturesSection = dynamic(() => import("@/components/pages/landing/FeaturesSection"));
 
+const HowItWorksSection = dynamic(() => import("@/components/pages/landing/HowItWorksSection"));
+
 const ThemeShowcase = dynamic(() => import("@/components/pages/landing/ThemeShowcase"));
 
 const ComponentPreview = dynamic(() => import("@/components/pages/landing/ComponentPreview"));
@@ -20,6 +22,7 @@ export default function LandingPage({ featuredComponents }: LandingPageProps) {
     <div className="flex flex-col">
       <HeroSection />
       <FeaturesSection />
+      <HowItWorksSection />
       <ThemeShowcase />
       <ComponentPreview featuredComponents={featuredComponents} />
       <CtaSection />

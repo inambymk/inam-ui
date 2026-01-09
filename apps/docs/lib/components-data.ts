@@ -6,7 +6,6 @@ export interface ComponentMetadata {
 }
 
 export const componentsMetadata: ComponentMetadata[] = [
-  // Form Components (Alphabetical)
   {
     slug: "button",
     name: "Button",

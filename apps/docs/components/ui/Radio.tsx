@@ -1,3 +1,7 @@
+// Auto-synced from CLI templates - DO NOT EDIT DIRECTLY
+// Edit: packages/inam-ui-cli/src/templates/Radio.tsx
+// Then run: npm run sync:templates
+
 import React, { createContext, useContext, useId } from "react";
 
 interface RadioGroupContextValue {
@@ -202,9 +206,9 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
           style={
             checked
               ? {
-                  backgroundColor: "hsl(var(--primary))",
-                  borderColor: "hsl(var(--primary))",
-                  boxShadow: `inset 0 0 0 ${width === "sm" ? "2px" : width === "lg" ? "4px" : "3px"} hsl(var(--background))`,
+                  backgroundImage: `radial-gradient(circle, hsl(var(--primary)) ${width === "sm" ? "5px" : width === "lg" ? "9px" : "7px"}, transparent 0)`,
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
                 }
               : undefined
           }
@@ -229,3 +233,5 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
     );
   }
 );
+
+Radio.displayName = "Radio";

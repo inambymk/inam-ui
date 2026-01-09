@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, Copy, Terminal } from "lucide-react";
-import { componentsMetadata } from "@/lib/components-data";
+import { ArrowRight, Check, Copy } from "lucide-react";
 import { useAnalytics, TELEMETRY_EVENTS } from "@/lib/useAnalytics";
 
 const HeroSection = () => {
@@ -23,125 +22,122 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative overflow-hidden bg-background border-b border-border/40">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 flex flex-col items-center">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left Column: Content */}
-          <div className="flex flex-col items-start text-left">
-            {/* Minimal Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-muted text-xs font-medium text-foreground mb-8">
-              <span className="flex h-2 w-2 rounded-full bg-primary" />
-              v0.1.1 Now Available
-            </div>
+    <section className="relative min-h-[calc(100vh-64px)] flex items-center justify-center bg-background overflow-hidden px-6 md:px-12">
+      {/* --- BACKGROUND DECORATION (SOLID ONLY, NO GRADIENTS) --- */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-foreground/[0.02] -skew-x-12 transform origin-top translate-x-20 hidden lg:block" />
 
-            {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.1] mb-6">
-              Build better <br />
-              <span className="text-primary">interfaces</span> fast.
-            </h1>
-
-            {/* Description */}
-            <p className="text-lg text-muted-foreground/80 leading-relaxed max-w-lg mb-10">
-              A curated collection of premium, accessible React components. Copy and paste into your
-              apps. Open source and free forever.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-4 mb-12">
-              <Link
-                href="/components"
-                onClick={() =>
-                  trackEvent(TELEMETRY_EVENTS.DOCS_CTA_CLICKED, {
-                    location: "hero",
-                    destination: "/components",
-                  })
-                }
-                className="inline-flex items-center justify-center h-12 px-8 rounded-md bg-foreground text-background font-medium hover:bg-foreground/90 transition-colors"
-              >
-                Browse Components
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </div>
-
-            <div className="flex items-center gap-8 text-sm text-foreground/80 font-medium">
-              <div className="flex items-center gap-2">
-                <Check className="h-4 w-4 text-primary" />
-                <span>{componentsMetadata.length}+ Components</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Check className="h-4 w-4 text-primary" />
-                <span>TypeScript Ready</span>
-              </div>
-            </div>
+      <div className="relative z-10 w-full max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+        {/* LEFT COMPONENT: BOLD TYPOGRAPHY */}
+        <div className="lg:col-span-8 flex flex-col items-start gap-8">
+          {/* Version Label */}
+          <div className="flex items-center space-x-2 px-4 py-1.5 bg-foreground text-background font-mono text-[10px] tracking-widest uppercase mb-4 rounded-full">
+            <span className="w-1.5 h-1.5 bg-primary animate-pulse rounded-full" />
+            <span>Core v0.1.2 Released</span>
           </div>
 
-          {/* Right Column: Unique Terminal */}
-          <div className="relative w-full max-w-lg mx-auto lg:mx-0">
-            {/* Terminal Window */}
-            <div className="relative rounded-xl bg-[#1e1e1e] border border-neutral-800 shadow-2xl overflow-hidden">
-              {/* Title Bar */}
-              <div className="flex items-center justify-between px-4 py-3 bg-[#252525] border-b border-neutral-800">
-                <div className="flex items-center gap-2">
-                  <div className="h-3 w-3 rounded-full bg-[#ff5f56]" />
-                  <div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
-                  <div className="h-3 w-3 rounded-full bg-[#27c93f]" />
-                </div>
-                <div className="text-xs text-neutral-400 font-mono flex items-center gap-1.5 opacity-60">
-                  <Terminal className="h-3 w-3" />
-                  bash
-                </div>
-                <div className="w-10" /> {/* Spacer for balance */}
-              </div>
+          {/* Headline: The Kinetic Split */}
+          <h1 className="text-5xl md:text-7xl lg:text-[9rem] font-black leading-[0.8] tracking-tighter text-foreground uppercase select-none">
+            Build <br className="hidden md:block" />
+            <span className="text-primary italic">Faster.</span> <br className="hidden md:block" />
+            Better <br className="hidden md:block" />
+            <span className="inline-block relative">
+              UX.
+              <div className="absolute -bottom-2 left-0 w-full h-4 md:h-8 bg-primary/20 -z-10 rounded-full" />
+            </span>
+          </h1>
 
-              {/* Terminal Content */}
-              <div className="p-6 font-mono text-sm sm:text-base leading-relaxed text-neutral-300 min-h-[140px] flex flex-col justify-center">
-                <div className="flex items-center justify-between group">
-                  <div className="flex items-center gap-2">
-                    <span className="text-neutral-500">$</span>
-                    <span className="text-white">npx</span>
-                    <span className="text-white">inam-ui</span>
-                    <span className="text-primary">add</span>
-                    <span className="text-primary">button</span>
-                    <span className="w-2 h-5 bg-primary animate-pulse ml-1" />
-                  </div>
+          <p className="max-w-xl text-lg md:text-xl text-muted-foreground font-medium leading-tight">
+            A premium component system for React. No gradients, no fluff. Just pure, precise
+            building blocks with a modern touch.
+          </p>
 
-                  <button
-                    onClick={copyCommand}
-                    className="opacity-0 group-hover:opacity-100 transition-opacity p-2 rounded hover:bg-neutral-800 text-neutral-400 hover:text-white"
-                    aria-label="Copy command"
-                  >
-                    {copied ? (
-                      <Check className="h-4 w-4 text-emerald-500" />
-                    ) : (
-                      <Copy className="h-4 w-4" />
-                    )}
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Decorative minimal accent behind */}
-            <div className="absolute -z-10 -bottom-6 -right-6 h-full w-full rounded-xl border border-border/60 bg-transparent" />
+          <div className="flex flex-wrap gap-6 mt-4">
+            <Link
+              href="/components"
+              onClick={() =>
+                trackEvent(TELEMETRY_EVENTS.DOCS_CTA_CLICKED, {
+                  location: "hero",
+                  destination: "/components",
+                })
+              }
+              className="group h-16 px-12 bg-primary text-primary-foreground font-black text-xl flex items-center gap-3 rounded-2xl hover:translate-x-2 hover:-translate-y-1 transition-all active:scale-95 shadow-[0_8px_0_rgb(var(--primary-foreground)/0.1)]"
+            >
+              Get Started
+              <ArrowRight className="w-6 h-6 border-2 border-primary-foreground rounded-full p-0.5" />
+            </Link>
           </div>
         </div>
 
-        {/* Theme Hint - Subtle indicator */}
-        <div className="mt-16 flex items-center justify-center gap-2 text-sm text-muted-foreground">
-          <svg
-            className="h-4 w-4 text-primary animate-pulse"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
-            />
-          </svg>
-          <span className="font-medium">Fully customizable</span>
-          <span className="hidden sm:inline">—</span>
-          <span className="hidden sm:inline">See your components in any color palette</span>
+        {/* RIGHT COMPONENT: THE COMMAND BLOCK */}
+        <div className="lg:col-span-4 flex flex-col gap-8">
+          {/* CLI Anchor */}
+          <div className="relative aspect-square md:aspect-auto md:min-h-[380px] flex flex-col justify-end p-8 bg-foreground text-background overflow-hidden group rounded-[2.5rem] shadow-2xl">
+            {/* Visual interest: Geometric static blocks (Softened) */}
+            <div className="absolute top-8 right-8 w-20 h-20 bg-primary rounded-3xl rotate-12" />
+            <div className="absolute top-24 right-16 w-12 h-12 bg-primary/40 rounded-2xl -rotate-12" />
+
+            <div className="relative z-10 flex flex-col gap-6">
+              <div className="w-16 h-1.5 my-4 bg-background rounded-full" />
+              <h3 className="text-4xl md:text-5xl font-black leading-none">
+                CLI <br />
+                DRIVEN.
+              </h3>
+              <p className="text-sm font-mono opacity-60">
+                Setup and add components in seconds. Optimized for Tailwind.
+              </p>
+
+              <div
+                onClick={copyCommand}
+                className="mt-6 flex flex-col bg-background/10 border border-background/20 p-5 font-mono text-sm cursor-pointer hover:bg-background/20 transition-all group/cli rounded-2xl"
+              >
+                <div className="flex items-center justify-between mb-3 opacity-40 text-[10px] font-bold">
+                  <span>TERMINAL EXECUTION</span>
+                  <div className="flex gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-background" />
+                    <span className="w-2 h-2 rounded-full bg-background" />
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 text-background font-bold text-base">
+                  <span className="text-primary">$</span>
+                  <code>{command}</code>
+                  <div className="ml-auto opacity-40 group-hover/cli:opacity-100 transition-opacity">
+                    {copied ? (
+                      <Check className="w-4 h-4 text-primary" />
+                    ) : (
+                      <Copy className="w-4 h-4 border border-background/40 rounded p-0.5" />
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Feature List: Simple Solid Tags (Softened) */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="px-5 py-4 border border-border flex items-center justify-between font-mono text-[10px] uppercase font-bold text-muted-foreground group hover:border-foreground hover:text-foreground transition-colors cursor-default rounded-2xl">
+              <span>TypeScript</span>
+              <div className="w-2 h-2 bg-primary rounded-full shadow-[0_0_8px_var(--primary)]" />
+            </div>
+            <div className="px-5 py-4 border border-border flex items-center justify-between font-mono text-[10px] uppercase font-bold text-muted-foreground group hover:border-foreground hover:text-foreground transition-colors cursor-default rounded-2xl">
+              <span>Accessible</span>
+              <div className="w-2 h-2 bg-primary rounded-full shadow-[0_0_8px_var(--primary)]" />
+            </div>
+            <div className="px-5 py-4 border border-border flex items-center justify-between font-mono text-[10px] uppercase font-bold text-muted-foreground group hover:border-foreground hover:text-foreground transition-colors cursor-default rounded-2xl">
+              <span>Themable</span>
+              <div className="w-2 h-2 bg-primary rounded-full shadow-[0_0_8px_var(--primary)]" />
+            </div>
+            <div className="px-5 py-4 border border-border flex items-center justify-between font-mono text-[10px] uppercase font-bold text-muted-foreground group hover:border-foreground hover:text-foreground transition-colors cursor-default rounded-2xl">
+              <span>Open Source</span>
+              <div className="w-2 h-2 bg-primary rounded-full shadow-[0_0_8px_var(--primary)]" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Decorative vertical running text */}
+      <div className="absolute left-6 bottom-16 hidden xl:block">
+        <div className="text-[9px] font-mono font-black text-foreground/10 rotate-180 vertical-rl uppercase tracking-[0.5em] select-none">
+          Inam.UI.Standard.Library.System.V1
         </div>
       </div>
     </section>
