@@ -59,16 +59,15 @@ export default function NotFound() {
           Go back to previous page
         </button>
 
-        {/* Fun ASCII art */}
-        <div className="mt-16 font-mono text-xs text-muted-foreground/50 whitespace-pre hidden sm:block">
-          {`    ╭─────────────────────────────╮
-    │  npx inam-ui <component>   │
-    │  Generate what you need!   │
-    ╰─────────────────────────────╯
-              \\
-               \\  ╭───╮
-                \\ │ ? │
-                  ╰───╯`}
+        {/* CLI hint - clean modern style */}
+        <div className="mt-16 p-4 rounded-lg bg-muted/50 border border-border max-w-md mx-auto">
+          <p className="text-sm text-muted-foreground text-center">
+            <code className="font-mono text-primary bg-primary/10 px-2 py-0.5 rounded">
+              npx inam-ui
+            </code>
+            <span className="mx-2 text-border">—</span>
+            Generate components instantly
+          </p>
         </div>
       </div>
     </div>

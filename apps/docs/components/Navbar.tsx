@@ -48,7 +48,7 @@ export default function Navbar() {
                   aria-hidden="true"
                 />
               </div>
-              <span className="text-lg font-bold tracking-tight hidden sm:block">
+              <span className="text-lg font-bold tracking-tight hidden sm:block text-foreground">
                 Inam <span className="text-primary">UI</span>
               </span>
             </Link>

@@ -8,7 +8,7 @@ interface CopyButtonProps {
   text: string;
   variant?: "default" | "icon" | "minimal";
   className?: string;
-  contentType?: string; // For analytics: "component_code", "install_command", "theme_config"
+  contentType?: string;
 }
 
 export default function CopyButton({

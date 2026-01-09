@@ -1,0 +1,10 @@
+export { buttonConfig } from "./button";
+export { badgeConfig } from "./badge";
+export { alertConfig } from "./alert";
+export { cardConfig } from "./card";
+export { spinnerConfig } from "./spinner";
+export { checkboxConfig } from "./checkbox";
+export { inputConfig } from "./input";
+export { radioConfig } from "./radio";
+export { switchConfig } from "./switch";
+export { textareaConfig } from "./textarea";

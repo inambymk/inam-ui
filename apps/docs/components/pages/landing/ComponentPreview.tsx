@@ -1,6 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { ComponentMetadata } from "@/lib/components-data";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Plus, Hash } from "lucide-react";
 
 interface ComponentPreviewProps {
   featuredComponents: ComponentMetadata[];
@@ -8,70 +10,114 @@ interface ComponentPreviewProps {
 
 const ComponentPreview = ({ featuredComponents }: ComponentPreviewProps) => {
   return (
-    <section className="py-20 lg:py-28 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-start justify-between gap-8 mb-12">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-3">
-              Beautiful, accessible
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/70">
-                components out of the box
+    <section className="relative py-24 lg:py-32 bg-background overflow-hidden">
+      {/* Decorative vertical line */}
+      <div className="absolute right-[5%] top-0 h-full w-[1px] bg-border/20 hidden xl:block" />
+
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* HEADER SECTION */}
+        <div className="flex flex-col md:flex-row items-end justify-between gap-12 mb-20 border-b border-border/40 pb-12">
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="h-10 w-10 bg-primary/20 border-2 border-primary/40 rounded-full flex items-center justify-center text-primary">
+                <Plus className="w-5 h-5" />
+              </div>
+              <span className="text-xs font-mono font-black uppercase tracking-[0.4em] text-muted-foreground">
+                The.Component.Directory
+              </span>
+            </div>
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-foreground uppercase leading-[0.8] tracking-tighter">
+              The <br />
+              <span className="text-primary italic underline decoration-primary/20 underline-offset-8 decoration-8 pt-4 inline-block">
+                Directory.
               </span>
             </h2>
-            <p className="text-muted-foreground max-w-lg">
-              From buttons to modals, all the building blocks you need for modern interfaces.
-            </p>
           </div>
-          <Link
-            href="/components"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-border text-sm font-medium text-foreground hover:bg-muted/50 transition-colors"
-          >
-            View all components
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+
+          <div className="flex flex-col items-start gap-4">
+            <p className="max-w-xs text-muted-foreground font-medium leading-tight">
+              Each module is an isolated piece of logic and design, ready to be dropped into your
+              architectural stack.
+            </p>
+            <Link
+              href="/components"
+              className="group flex gap-2 items-center text-foreground font-black uppercase text-xs tracking-widest border-b-2 border-primary/40 pb-1 hover:border-primary transition-colors"
+            >
+              Access Full Library
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </Link>
+          </div>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {featuredComponents.map((comp) => (
+        {/* BRUTALIST GRID: EXHIBIT FRAMES */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {featuredComponents.map((comp, idx) => (
             <Link
               key={comp.slug}
               href={`/components/${comp.slug}`}
-              className="group relative overflow-hidden rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/50 hover:shadow-md"
+              className={`group relative aspect-[4/5] bg-card border border-border/60 rounded-[3rem] p-10 flex flex-col justify-between transition-all duration-500 hover:border-primary/50 hover:-rotate-1 active:scale-95 ${
+                idx % 2 === 1 ? "md:translate-y-12" : ""
+              }`}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="relative z-10">
-                <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                    />
-                  </svg>
+              {/* Internal Framing */}
+              <div className="absolute inset-4 border border-foreground/[0.03] rounded-[2.5rem] pointer-events-none" />
+
+              <div className="relative flex justify-between items-start">
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-mono font-bold text-primary mb-1">
+                    0{idx + 1}
+                  </span>
+                  <h3 className="text-3xl font-black text-foreground uppercase tracking-tight group-hover:text-primary transition-colors">
+                    {comp.name}
+                  </h3>
                 </div>
-                <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                  {comp.name}
-                </h3>
-                <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
-                  {comp.description}
-                </p>
-                <div className="mt-4 flex items-center text-sm text-primary font-medium">
-                  View component
-                  <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                <Hash className="w-5 h-5 text-muted-foreground/30 group-hover:text-primary transition-colors" />
+              </div>
+
+              {/* Mock Visual (Technical) */}
+              <div className="relative h-40 w-full bg-muted/20 border border-muted-foreground/10 rounded-2xl flex items-center justify-center p-6 grayscale group-hover:grayscale-0 transition-all">
+                <div className="w-full space-y-3">
+                  <div className="h-2 w-full bg-foreground/10 rounded-full" />
+                  <div className="h-2 w-3/4 bg-primary/40 rounded-full" />
+                  <div className="h-2 w-1/2 bg-foreground/5 rounded-full" />
+                  <div className="pt-4 flex gap-2">
+                    <div className="h-6 w-12 bg-primary/20 rounded-lg" />
+                    <div className="h-6 w-6 bg-muted rounded-full" />
+                  </div>
                 </div>
               </div>
+
+              <div className="relative">
+                <p className="text-sm text-muted-foreground font-medium mb-6 line-clamp-2 leading-snug">
+                  {comp.description}
+                </p>
+                <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-foreground">
+                  Inspect Build{" "}
+                  <ArrowRight className="w-3 h-3 group-hover:translate-x-2 transition-transform" />
+                </div>
+              </div>
+
+              {/* Subtle kinetic overlay (No gradient) */}
+              <div className="absolute inset-0 bg-primary/[0.02] opacity-0 group-hover:opacity-100 transition-opacity rounded-[3rem]" />
             </Link>
           ))}
         </div>
 
-        <div className="mt-16 text-center">
+        {/* FINAL CALLOUT (Simple & Large) */}
+        <div className="mt-40 flex flex-col items-center">
+          <div className="h-20 w-[1px] bg-primary mb-8" />
           <Link
             href="/components"
-            className="inline-flex items-center justify-center h-12 px-8 rounded-lg bg-primary/5 border border-border text-foreground font-medium hover:bg-primary/10 hover:border-primary/30 transition-colors"
+            className="group relative h-20 px-16 bg-foreground text-background font-black text-2xl uppercase rounded-full flex items-center gap-4 hover:scale-105 active:scale-95 transition-all"
           >
-            Explore all components
+            System Complete
+            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center group-hover:rotate-45 transition-transform">
+              <ArrowRight className="w-6 h-6 text-primary-foreground" />
+            </div>
           </Link>
+          <div className="mt-8 text-[10px] font-mono text-muted-foreground/40 uppercase tracking-[0.8em]">
+            Explore.Every.Module
+          </div>
         </div>
       </div>
     </section>

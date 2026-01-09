@@ -1,3 +1,7 @@
+// Auto-synced from CLI templates - DO NOT EDIT DIRECTLY
+// Edit: packages/inam-ui-cli/src/templates/Alert.tsx
+// Then run: npm run sync:templates
+
 "use client";
 
 import React, { HTMLAttributes, useState, useEffect } from "react";
